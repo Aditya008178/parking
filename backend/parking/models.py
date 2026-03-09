@@ -21,6 +21,8 @@ class ParkingSpace(models.Model):
     parking_type = models.CharField(max_length=20, choices=PARKING_TYPE_CHOICES)
     price_per_hour = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total_slots = models.PositiveIntegerField(default=1)
+    available_slots = models.PositiveIntegerField(default=1)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

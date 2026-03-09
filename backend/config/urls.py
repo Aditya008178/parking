@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
-    path('', lambda request: HttpResponse("Backend Running ✅")),
+    path('', lambda request: HttpResponse("Backend Running Successfully")),
     path('admin/', admin.site.urls),
 
     path('api/users/', include('accounts.urls')),

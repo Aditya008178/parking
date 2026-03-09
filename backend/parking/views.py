@@ -4,9 +4,17 @@ from .models import ParkingSpace
 from .serializers import ParkingSpaceSerializer
 
 class ParkingSpaceListCreateView(generics.ListCreateAPIView):
-    queryset = ParkingSpace.objects.all().order_by('-created_at')
     serializer_class = ParkingSpaceSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        queryset = ParkingSpace.objects.all().order_by('-created_at')
+        location = self.request.query_params.get('location')
+
+        if location:
+            queryset = queryset.filter(location__icontains=location)
+
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
