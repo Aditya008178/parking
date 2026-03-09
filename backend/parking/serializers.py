@@ -7,4 +7,4 @@ class ParkingSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParkingSpace
         fields = '__all__'
-        read_only_fields = ['owner', 'created_at']
+        read_only_fields = ['owner', 'created_at', 'is_approved']
